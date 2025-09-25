@@ -15,4 +15,4 @@ Route::get('/about', function () {
 });
 
 Route::get('/matakuliah/{param1}', [MatakuliahController::class, 'show']);
-
+tfuyftyfty
