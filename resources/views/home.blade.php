@@ -7,6 +7,7 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    	<link rel="stylesheet" href="{{ asset('assets/css/custom-style.css') }}">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -43,11 +44,13 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">My App</a>
+            <img src="{{ asset('assets/images/logo.png') }}" class="logo" alt="Logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -73,8 +76,8 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Welcome to My App</h1>
-            <p class="lead">A simple and elegant app using Bootstrap 5 and Laravel Blade</p>
+            <h1 class="font-custom">Welcome to My App</h1>
+            <p class="lead font-custom">A simple and elegant app using Bootstrap 5 and Laravel Blade</p>
             <a href="#content" class="btn btn-light btn-lg mt-3">Learn More</a>
         </div>
     </section>
@@ -95,9 +98,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                       <h5 class="card-title">Form Pertanyaan</h5>
-<form action="{{ route('question.store') }}" method="POST">
-	@csrf
+                        <h5 class="card-title">Sign Up Form</h5>
+                        <form action="#" method="POST">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
@@ -107,10 +109,10 @@
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="pertanyaan" class="form-label">pertanyaan</label>
-                                <textarea class= "form-control" rows="4" name = "pertanyaan"></textarea>
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Kirim pertanyaan</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -118,9 +120,47 @@
         </div>
     </section>
 
+    @if (session('info'))
+    <div class="alert alert-info">
+        {!! session('info') !!}
+    </div>
+    @endif
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Form Pertanyaan</h5>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <form action="{{ route('question.store') }}" method="POST">
+        @csrf
+
+        <form action="" method="POST">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" name="nama" value="{{old('nama')}}">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="email" value="{{old('email')}}">
+            </div>
+            <div class="mb-3">
+                <label for="pertanyaan" class="form-label">Pertanyaan</label>
+                <textarea class="form-control" rows="4" name="pertanyaan" value="{{old('pertanyaan')}}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
+        </form>
+    </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">Z
+        <div class="container">
             <p>&copy; 2024 My Laravel App. All Rights Reserved.</p>
         </div>
     </footer>
