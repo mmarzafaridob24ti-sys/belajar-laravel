@@ -6,6 +6,8 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/mahasiswa', function () {
     return 'Hallo mahasiswa';
@@ -24,3 +26,6 @@ Route::post('question/store', [QuestionController::class, 'store'])
 
 Route::get('/home', [HomeController::class, 'index'])
 ->name('home');
+Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+Route::resource('pelanggan', PelangganController::class);
+
