@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Pelanggan;
+
 class DashboardController extends Controller
 {
     /**
@@ -27,7 +29,16 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data['first_name'] = $request->first_name;
+		$data['last_name'] = $request->last_name;
+		$data['birthday'] = $request->birthday;
+		$data['gender'] = $request->gender;
+		$data['email'] = $request->email;
+		$data['phone'] = $request->phone;
+
+		Pelanggan::create($data);
+
+		return redirect()->route('pelanggan.index')->with('success','Penambahan Data Berhasil!');
     }
 
     /**
