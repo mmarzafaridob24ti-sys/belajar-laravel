@@ -8,6 +8,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\PelangganController;
 
 Route::get('/mahasiswa', function () {
     return 'Hallo mahasiswa';
